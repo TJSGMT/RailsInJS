@@ -32,9 +32,7 @@
   function HideSubDiv(subcription_check) {
       var subscription_email_div = document.getElementById("subscription_email_div");
      subscription_email_div.style.display = subcription_check.checked ? "block" : "none";
-
     }
-
     function Showpasswd() {
       var get_email = document.getElementById("email").value;
       var old_email = "<%=@user.email %>";
