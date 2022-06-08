@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     @password_change = User.find(params[:id])
   end
 
-  def change_password_update
+  def changepassword_update
     @user = User.find(params[:id])
     if @user.update_attribute(:password, params[:new_password])
       flash[:notice] = "Password updated successfully"
