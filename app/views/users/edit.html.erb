@@ -1,0 +1,23 @@
+<% if flash[:errors] %>
+  <%= flash[:errors] %>
+<% end %><br>
+<br>
+<div class="container">
+  <div class="card" style="width: 68rem;">
+    <div class="card-body">
+      <h4 class="card-title text-center">USER Registration Form</h4>
+      <%= form_with model: @user do |form| %><br>
+        <%= form.text_field :first_name, class:"form-control", placeholder:"Enter First name" %><br>
+        <%= form.text_field :last_name, class:"form-control", placeholder:"Enter Last name" %><br>
+        <%= form.email_field :email,class:"form-control", placeholder:"Enter Email"%><br>
+        <%= form.password_field :password,class:"form-control", placeholder:"Enter Password"%><br>
+        <%= form.check_box :subscription %>
+        <%= form.label :subscription,'Wanna have Subscription'%><br><br>
+        <%= form.email_field :subscription_email,class:"form-control", placeholder:"Enter your Email"%><br>
+        <br>
+        <%= form.submit class:"btn btn-primary"%><br>
+      <%end%>
+    </div>
+  </div>
+</div>
+</div>

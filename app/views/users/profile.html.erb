@@ -1,0 +1,46 @@
+<% if flash[:errors] %>
+  <%= flash[:errors] %>
+<% end %><br>
+<br>
+<div class="container">
+  <div class="card" style="width: 68rem;">
+    <div class="card-body">
+      <h4 class="card-title text-center">USER Registration Form</h4>
+      <%= form_with model: @user,url: profile_update_user_path, local: false do |form| %><br>
+        <%= form.text_field :first_name, class:"form-control", placeholder:"Enter First name" %><br>
+        <%= form.text_field :last_name, class:"form-control", placeholder:"Enter Last name" %><br>
+        <%= form.email_field :email,class:"form-control",id:"email", placeholder:"Enter Email", oninput:"Showpasswd(this)"%><br>
+        <div style="display:none" id="passworddiv">
+          <%= form.password_field :password,class:"form-control", placeholder:"Enter Password"%><br>
+        </div>
+        <%= form.check_box :subscription ,onclick:"HideSubDiv(this)"%>
+        <%= form.label :subscription,'Wanna have Subscription'%><br>
+        <br>
+        <div id="subscription_email_div" style="display:none;">
+          <%= form.email_field :subscription_email,class:"form-control", placeholder:"Enter your Email"%><br>
+          <br>
+        </div>
+        <%= form.submit "Update User",data: { disable_with: "Hold it lill bit!!!..." }, class:"btn btn-primary"%><br><br>
+      <%end%>
+        <%= button_to "Change password",changepassword_user_path,method: :get,class:"btn btn-warning"%><br>
+    </div>
+  </div>
+  <div id="userdetails" class="ms-3">
+  </div>
+</div>
+<script>
+  function HideSubDiv(subcription_check) {
+      var subscription_email_div = document.getElementById("subscription_email_div");
+     subscription_email_div.style.display = subcription_check.checked ? "block" : "none";
+    }
+    function Showpasswd() {
+      var get_email = document.getElementById("email").value;
+      var old_email = "<%=@user.email %>";
+      if(get_email != old_email){
+        document.getElementById("passworddiv").style.display = "block";
+      }
+      else{
+      document.getElementById("passworddiv").style.display = "none";
+      }
+    }
+</script>

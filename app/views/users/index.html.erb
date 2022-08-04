@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body><br>
+    <br>
+    <div class="container ">
+      <div class="d-flex  align-items-center  justify-content-center mb-3">
+        <h1> user's Index</h1>
+      </div>
+      <table class="table  table-hover">
+        <tr>
+          <th scope="col">First Name</th>
+          <th scope="col">last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user|%>
+          <tr>
+            <th scope="row"><%=user.first_name%></th>
+            <th scope="row"><%=user.last_name%></th>
+            <td><%=user.email%></td>
+            <td><button type="button" class="btn btn-link"><%= link_to "Show", user_path(user), class:"btn btn-warning", method: :get %></button>
+              <button type="button" class="btn btn-link"><%= button_to " Profile", profile_user_path(user), class:"btn btn-info", method: :get %></button>
+              <button type="button" class="btn btn-link"><%= link_to " Destroy", user_path(user),data: {turbo_method: :delete, turbo_confirm: "Are you want delete?"},class:"btn btn-danger"%></button>
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+    <br>
+    <button type="button" class="btn btn-link"><%= link_to "Add new user", new_user_path, class:"btn btn-success", method: :get %></button>
+  </div>
+</body>
